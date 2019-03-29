@@ -67,6 +67,16 @@ class BitcoinPagesControllerTest extends TestCase
     }
 
     /** @test */
+    function arrays_are_not_valid_wifs()
+    {
+        $this->postSearch(['private_key' => [
+                '5KAmCM5bmAW4zxLJtGMAQPGswXcpErraYvTcTRokC3DyCFRWwWV',
+                '5KBmCM5bmAW4zxLJtGMAQPGswXcpErraYvTcTRokC3DyCFRWwWW',
+            ]])
+            ->assertSessionHasErrors('private_key');
+    }
+
+    /** @test */
     function it_can_show_the_first_page()
     {
         $this->getPage('1')

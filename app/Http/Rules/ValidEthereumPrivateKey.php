@@ -8,7 +8,7 @@ class ValidEthereumPrivateKey implements Rule
 {
     public function passes($attribute, $value)
     {
-        return (bool) preg_match('/^[0-9a-f]{64}$/', $value);
+        return is_string($value) && preg_match('/^[0-9a-f]{64}$/', $value);
     }
 
     public function message()
