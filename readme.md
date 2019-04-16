@@ -4,7 +4,7 @@ This repository contains the website for [Keys.lol](https://keys.lol).
 The code that generates the keys is in [a separate repository](https://github.com/SjorsO/keys-generator).
 
 ## Laravel version
-[Compare to laravel master](https://github.com/laravel/laravel/compare/915667a8d5fa31e7d35b617f64c47ab67a64a171...master)
+[Compare to laravel master](https://github.com/laravel/laravel/compare/06162adc9839ada8b2525e006bef6b80914296d6...master)
 
 ## Installation
 Make sure the [keys generator executable](https://github.com/SjorsO/keys-generator) is available from $PATH.
