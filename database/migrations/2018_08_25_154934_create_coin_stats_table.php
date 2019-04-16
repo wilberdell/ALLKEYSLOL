@@ -20,9 +20,4 @@ class CreateCoinStatsTable extends Migration
             $table->unique(['date', 'coin']);
         });
     }
-
-    public function down()
-    {
-        Schema::dropIfExists('coin_stats');
-    }
 }

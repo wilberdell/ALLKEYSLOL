@@ -15,9 +15,4 @@ class CreateSmallestRandomPagesTable extends Migration
             $table->timestamps();
         });
     }
-
-    public function down()
-    {
-        Schema::dropIfExists('smallest_random_pages');
-    }
 }

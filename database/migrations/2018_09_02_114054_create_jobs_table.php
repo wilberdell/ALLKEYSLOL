@@ -27,10 +27,4 @@ class CreateJobsTable extends Migration
             $table->timestamp('failed_at')->useCurrent();
         });
     }
-
-    public function down()
-    {
-        Schema::dropIfExists('jobs');
-        Schema::dropIfExists('failed_jobs');
-    }
 }

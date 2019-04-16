@@ -15,9 +15,4 @@ class CreateBiggestRandomPagesTable extends Migration
             $table->timestamps();
         });
     }
-
-    public function down()
-    {
-        Schema::dropIfExists('biggest_random_pages');
-    }
 }
