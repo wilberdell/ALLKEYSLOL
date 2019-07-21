@@ -1,28 +1,32 @@
 <?php
 
-Route::view('/', 'home')->name('home');
+use App\Http\Controllers\BitcoinPagesController;
+use App\Http\Controllers\EthereumPagesController;
+use App\Http\Controllers\HumanVerificationController;
+use App\Http\Controllers\StatisticsPageController;
 
+Route::view('/', 'home')->name('home');
 Route::view('/about', 'about')->name('about');
 
-Route::get('/statistics', 'StatisticsPageController')->name('stats');
+Route::get('/statistics', StatisticsPageController::class)->name('stats');
 
-Route::get('/are-you-human',  ['uses' => 'HumanVerificationController@index', 'as' => 'humanVerification']);
-Route::post('/are-you-human', ['uses' => 'HumanVerificationController@post',  'as' => 'humanVerification.post']);
+Route::get('/are-you-human', [HumanVerificationController::class, 'index'])->name('humanVerification');
+Route::post('/are-you-human', [HumanVerificationController::class, 'post'])->name('humanVerification.post');
 
-Route::get('/bitcoin',                       ['uses' => 'BitcoinPagesController@index',      'as' => 'btcPages.index']);
-Route::get('/bitcoin/search',                ['uses' => 'BitcoinPagesController@showSearch', 'as' => 'btcPages.search']);
-Route::post('/bitcoin/search',               ['uses' => 'BitcoinPagesController@search',     'as' => 'btcPages.search']);
-Route::get('/bitcoin/random',                ['uses' => 'BitcoinPagesController@randomPage', 'as' => 'btcPages.random']);
-Route::get('/bitcoin/statistics',            ['uses' => 'BitcoinPagesController@stats',      'as' => 'btcPages.stats']);
-Route::get('/bitcoin/you-have-gone-too-far', ['uses' => 'BitcoinPagesController@pageTooBig', 'as' => 'btcPages.pageTooBig']);
-Route::get('/bitcoin/{pageNumber?}',         ['uses' => 'BitcoinPagesController@keysPage',   'as' => 'btcPages'])->middleware('only-for-humans:btc');
+Route::get('/bitcoin', [BitcoinPagesController::class, 'index'])->name('btcPages.index');
+Route::get('/bitcoin/search', [BitcoinPagesController::class, 'showSearch'])->name('btcPages.search');
+Route::post('/bitcoin/search', [BitcoinPagesController::class, 'search'])->name('btcPages.search');
+Route::get('/bitcoin/random', [BitcoinPagesController::class, 'randomPage'])->name('btcPages.random');
+Route::get('/bitcoin/statistics', [BitcoinPagesController::class, 'stats'])->name('btcPages.stats');
+Route::get('/bitcoin/you-have-gone-too-far', [BitcoinPagesController::class, 'pageTooBig'])->name('btcPages.pageTooBig');
+Route::get('/bitcoin/{pageNumber?}', [BitcoinPagesController::class, 'keysPage'])->name('btcPages')->middleware('only-for-humans:btc');
 Route::redirect('/btc', '/bitcoin');
 
-Route::get('/ethereum',                       ['uses' => 'EthereumPagesController@index',      'as' => 'ethPages.index']);
-Route::get('/ethereum/search',                ['uses' => 'EthereumPagesController@showSearch', 'as' => 'ethPages.search']);
-Route::post('/ethereum/search',               ['uses' => 'EthereumPagesController@search',     'as' => 'ethPages.search']);
-Route::get('/ethereum/random',                ['uses' => 'EthereumPagesController@randomPage', 'as' => 'ethPages.random']);
-Route::get('/ethereum/statistics',            ['uses' => 'EthereumPagesController@stats',      'as' => 'ethPages.stats']);
-Route::get('/ethereum/you-have-gone-too-far', ['uses' => 'EthereumPagesController@pageTooBig', 'as' => 'ethPages.pageTooBig']);
-Route::get('/ethereum/{pageNumber?}',         ['uses' => 'EthereumPagesController@keysPage',   'as' => 'ethPages'])->middleware('only-for-humans:eth');
+Route::get('/ethereum', [EthereumPagesController::class, 'index'])->name('ethPages.index');
+Route::get('/ethereum/search', [EthereumPagesController::class, 'showSearch'])->name('ethPages.search');
+Route::post('/ethereum/search', [EthereumPagesController::class, 'search'])->name('ethPages.search');
+Route::get('/ethereum/random', [EthereumPagesController::class, 'randomPage'])->name('ethPages.random');
+Route::get('/ethereum/statistics', [EthereumPagesController::class, 'stats'])->name('ethPages.stats');
+Route::get('/ethereum/you-have-gone-too-far', [EthereumPagesController::class, 'pageTooBig'])->name('ethPages.pageTooBig');
+Route::get('/ethereum/{pageNumber?}', [EthereumPagesController::class, 'keysPage'])->name('ethPages')->middleware('only-for-humans:eth');
 Route::redirect('/eth', '/ethereum');
