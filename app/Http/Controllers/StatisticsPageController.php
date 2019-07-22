@@ -15,13 +15,13 @@ class StatisticsPageController
             ->select('date', 'random_pages_generated', 'pages_viewed', 'keys_generated')
             ->get();
 
-        $dateCurrentMonth = now()->format('-m-');
+        $dateCurrentMonth = now()->format('Y-m-');
 
         $thisMonth = $allTime->filter(function (CoinStats $coinStats) use ($dateCurrentMonth) {
             return strpos($coinStats->date, $dateCurrentMonth) !== false;
         });
 
-        $dateLastMonth = now()->startOfMonth()->subDays(1)->format('-m-');
+        $dateLastMonth = now()->startOfMonth()->subDays(1)->format('Y-m-');
 
         $lastMonth = $allTime->filter(function (CoinStats $coinStats) use ($dateLastMonth) {
             return strpos($coinStats->date, $dateLastMonth) !== false;

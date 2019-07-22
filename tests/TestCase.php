@@ -10,6 +10,18 @@ abstract class TestCase extends BaseTestCase
 {
     use MatchesSnapshots;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->settingUp();
+    }
+
+    public function settingUp()
+    {
+        //
+    }
+
     protected function getSnapshotDirectory(): string
     {
         return base_path('tests/_snapshots_');
