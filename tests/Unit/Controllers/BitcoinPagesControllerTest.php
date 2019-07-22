@@ -8,6 +8,7 @@ use App\Models\BiggestRandomPage;
 use App\Models\CoinStats;
 use App\Models\SmallestRandomPage;
 use App\Support\Enums\CoinType;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -216,9 +217,59 @@ class BitcoinPagesControllerTest extends TestCase
         $this->assertSame('519480938980827735392877', BiggestRandomPage::biggest(CoinType::BITCOIN));
     }
 
+    /** @test */
+    function regression__it_shows_stats_for_last_month()
+    {
+        Carbon::setTestNow('2019-05-15 12:00:00');
+
+        CoinStats::create([
+            'date' => '2019-05-15',
+            'coin' => 'btc',
+            'random_pages_generated' => 100,
+            'pages_viewed' => 200,
+            'keys_generated' => 300,
+        ]);
+
+        CoinStats::create([
+            'date' => '2019-04-15',
+            'coin' => 'btc',
+            'random_pages_generated' => 1,
+            'pages_viewed' => 2,
+            'keys_generated' => 3,
+        ]);
+
+        CoinStats::create([
+            'date' => '2018-05-15',
+            'coin' => 'btc',
+            'random_pages_generated' => 100,
+            'pages_viewed' => 200,
+            'keys_generated' => 300,
+        ]);
+
+        CoinStats::create([
+            'date' => '2019-05-15',
+            'coin' => 'eth',
+            'random_pages_generated' => 99999,
+            'pages_viewed' => 99999,
+            'keys_generated' => 99999,
+        ]);
+
+        $this->showStatisticsPage()
+            ->assertStatus(200)
+            ->assertSeeText('Today: 300')
+            ->assertSeeText('This month: 300')
+            ->assertSeeText('Last month: 3')
+            ->assertSeeText('All time: 603');
+    }
+
     private function getPage($number)
     {
         return $this->get(route('btcPages', $number));
+    }
+
+    private function showStatisticsPage()
+    {
+        return $this->get(route('btcPages.stats'));
     }
 
     private function getRandomPage()
