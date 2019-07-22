@@ -7,6 +7,7 @@ use App\Http\Controllers\StatisticsPageController;
 
 Route::view('/', 'home')->name('home');
 Route::view('/about', 'about')->name('about');
+Route::view('/donate', 'donate')->name('donate');
 
 Route::get('/statistics', StatisticsPageController::class)->name('stats');
 

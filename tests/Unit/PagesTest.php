@@ -16,5 +16,6 @@ class PagesTest extends TestCase
 
         $this->get(route('about'))->assertStatus(200);
         $this->get(route('stats'))->assertStatus(200);
+        $this->get(route('donate'))->assertStatus(200);
     }
 }
