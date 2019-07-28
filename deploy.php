@@ -14,7 +14,7 @@ host('sjors@keys.lol')->set('deploy_path', '/var/www/keys');
 
 task('build-npm-assets', 'npm i; npm run prod');
 
-task('clear-opcache', 'sudo service apache2 restart');
+task('clear-opcache', 'sudo service apache2 reload');
 
 task('generate-sitemap', 'php artisan keys:generate-sitemap');
 
