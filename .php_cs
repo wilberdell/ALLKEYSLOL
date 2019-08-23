@@ -48,6 +48,7 @@ $rules = [
     'no_whitespace_in_blank_line' => true,
     'not_operator_with_successor_space' => true,
     'ordered_imports' => true,
+    'phpdoc_var_annotation_correct_order' => true,
     'short_scalar_cast' => true,
     'single_blank_line_before_namespace' => true,
     'single_quote' => true,
