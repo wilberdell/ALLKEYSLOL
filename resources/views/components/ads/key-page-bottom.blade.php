@@ -1,9 +1,9 @@
 @if(App::environment('production'))
     <ins class="adsbygoogle mb-4"
-         style="display:block; height: 100px;"
+         style="display:block"
          data-ad-client="ca-pub-8027891891391991"
          data-ad-slot="3312433285"
-         data-ad-format="horizontal"
+         data-ad-format="auto"
          data-full-width-responsive="true"></ins>
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
