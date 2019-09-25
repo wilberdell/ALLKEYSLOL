@@ -94,7 +94,7 @@ abstract class KeyPagesController extends Controller
 
         $keys = $this->pageKeys::generate($pageNumber);
 
-        CoinStats::coinPageViewed($this->coinType, count($keys));
+        // CoinStats::coinPageViewed($this->coinType, count($keys));
 
         return view($this->coinType.'-page', [
             'pageNumber' => $pageNumber,
@@ -113,7 +113,7 @@ abstract class KeyPagesController extends Controller
 
         RandomPageGenerated::dispatch($randomPage);
 
-        CoinStats::randomPageGenerated($this->coinType);
+        // CoinStats::randomPageGenerated($this->coinType);
 
         return redirect()->route($this->coinType.'Pages', $randomPage->getPageNumber());
     }
