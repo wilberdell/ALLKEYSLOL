@@ -7,7 +7,7 @@ class Human
     public function isReal()
     {
         // Randomly make users re-verify that they are not a robot
-        if (mt_rand(0, 200) === 42) {
+        if (mt_rand(0, 600) === 42) {
             $this->unsetCurrentUser();
         }
 
