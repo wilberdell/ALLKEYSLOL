@@ -1,2 +1,7 @@
 User-agent: *
-Disallow:
+Disallow: /bitcoin/
+Allow: /bitcoin/search
+Allow: /bitcoin/1
+Disallow: /ethereum/
+Allow: /ethereum/search
+Allow: /ethereum/1
