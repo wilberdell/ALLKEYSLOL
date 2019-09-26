@@ -1,2 +1,3 @@
 User-agent: *
-Disallow:
+Disallow: /bitcoin/random
+Disallow: /ethereum/random
