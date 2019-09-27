@@ -5,10 +5,14 @@
 
     RewriteEngine On
 
+    RewriteCond %{HTTP_USER_AGENT} Googlebot
+    RewriteCond %{REQUEST_URI} (.+)/random$
+    RewriteRule . - [F,L]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-    
+
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
