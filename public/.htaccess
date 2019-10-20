@@ -9,6 +9,10 @@
     RewriteCond %{REQUEST_URI} (.+)/random$
     RewriteRule . - [F,L]
 
+    RewriteCond %{HTTP_USER_AGENT} python-requests
+    RewriteCond %{REQUEST_URI} (.+)
+    RewriteRule . - [F,L]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
