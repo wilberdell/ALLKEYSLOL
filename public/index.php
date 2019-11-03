@@ -1,4 +1,5 @@
 <?php
+// http_response_code(503);exit;
 
 /**
  * Laravel - A PHP Framework For Web Artisans
