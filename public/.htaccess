@@ -18,6 +18,11 @@
     RewriteCond %{REQUEST_URI} (.+)
     RewriteRule . - [R=404]
 
+    # Block empty user agents
+    RewriteCond %{HTTP_USER_AGENT} ^$
+    RewriteCond %{REQUEST_URI} (.+)
+    RewriteRule . - [R=404]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
