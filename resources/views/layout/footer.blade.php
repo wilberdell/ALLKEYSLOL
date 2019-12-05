@@ -16,10 +16,4 @@
             Github
         </a>
     </div>
-
-    <div class="text-center mt-4 mb-2">
-        <span>Hosting provided by</span>
-        <a href="https://bitvps.com?ref=keyslol" class="hover:underline">bitvps.com</a>
-    </div>
-
 </footer>
